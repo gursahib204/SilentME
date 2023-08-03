@@ -192,32 +192,36 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         String lat = MySharedPreferences.getString(this, "Lat");
         String lng = MySharedPreferences.getString(this, "Lng");
 
-        // Add a marker to the desired initial location
-        LatLng initialLocation = new LatLng(Float.parseFloat(lat), Float.parseFloat(lng));
-        centerLatLng = initialLocation;
-        radius = 100;
-        MarkerOptions markerOptions = new MarkerOptions().position(initialLocation).title("My Mrker");
-        marker = googleMap.addMarker(markerOptions);
-        marker.setDraggable(true); // Enable marker dragging
-        googleMap.setOnMarkerDragListener(this);
+        if (!lat.isEmpty())
+        {
+            // Add a marker to the desired initial location
+            LatLng initialLocation = new LatLng(Float.parseFloat(lat), Float.parseFloat(lng));
+            centerLatLng = initialLocation;
+            radius = 100;
+            MarkerOptions markerOptions = new MarkerOptions().position(initialLocation).title("My Marker");
+            marker = googleMap.addMarker(markerOptions);
+            marker.setDraggable(true); // Enable marker dragging
+            googleMap.setOnMarkerDragListener(this);
 
-        // Move the camera to the initial marker location
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(initialLocation, 17));
+            // Move the camera to the initial marker location
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(initialLocation, 17));
 
-        // Add a circle radius around the initial marker location
-        CircleOptions circleOptions = new CircleOptions()
-                .center(initialLocation)
-                .radius(100) // Radius in meters, change this value as per your requirement
-                .strokeWidth(5f)
-                .strokeColor(Color.RED)
-                .fillColor(Color.parseColor("#30FF0000")); // Transparent red fill
+            // Add a circle radius around the initial marker location
+            CircleOptions circleOptions = new CircleOptions()
+                    .center(initialLocation)
+                    .radius(100) // Radius in meters, change this value as per your requirement
+                    .strokeWidth(5f)
+                    .strokeColor(Color.RED)
+                    .fillColor(Color.parseColor("#30FF0000")); // Transparent red fill
 
-        circle = googleMap.addCircle(circleOptions);
+            circle = googleMap.addCircle(circleOptions);
 
-        // Register the geofence with the selected location
-        registerGeofence(initialLocation, 100);
+            // Register the geofence with the selected location
+            registerGeofence(initialLocation, 100);
 
-        checkGeofenceStatus();
+            checkGeofenceStatus();
+        }
+
     }
 
     private void showUserCurrentLocation() {
@@ -249,27 +253,27 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 //                });
     }
 
-    private void updateSilentMode(LatLng currentLatLng) {
-        String lat = MySharedPreferences.getString(this, "Lat");
-        String lng = MySharedPreferences.getString(this, "Lng");
-
-        float v = Float.parseFloat(lat);
-        float v1 = Float.parseFloat(lng);
-
-        float[] distance = new float[1];
-        Location.distanceBetween(currentLatLng.latitude, currentLatLng.longitude,
-                v, v1, distance);
-
-//        Log.e("NewLogic",distance[0]+"---");
-        if (distance[0] > radius) {
-            // New location is outside the geofence radius, change to normal mode
-            setRingerMode(RINGER_MODE_NORMAL);
-        } else {
-            // New location is inside the geofence radius, change to vibrate mode
-            setRingerMode(RINGER_MODE_VIBRATE);
-        }
-
-    }
+//    private void updateSilentMode(LatLng currentLatLng) {
+//        String lat = MySharedPreferences.getString(this, "Lat");
+//        String lng = MySharedPreferences.getString(this, "Lng");
+//
+//        float v = Float.parseFloat(lat);
+//        float v1 = Float.parseFloat(lng);
+//
+//        float[] distance = new float[1];
+//        Location.distanceBetween(currentLatLng.latitude, currentLatLng.longitude,
+//                v, v1, distance);
+//
+////        Log.e("NewLogic",distance[0]+"---");
+//        if (distance[0] > radius) {
+//            // New location is outside the geofence radius, change to normal mode
+//            setRingerMode(RINGER_MODE_NORMAL);
+//        } else {
+//            // New location is inside the geofence radius, change to vibrate mode
+//            setRingerMode(RINGER_MODE_VIBRATE);
+//        }
+//
+//    }
 
     @Override
     public void onMarkerDragStart(Marker marker) {
@@ -322,6 +326,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private void updateCirclePosition(LatLng centerLatLng) {
+
         if (googleMap != null && circle != null) {
             circle.setCenter(centerLatLng);
         }

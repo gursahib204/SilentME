@@ -99,22 +99,27 @@ public class GeofenceService extends Service {
                     String lng = MySharedPreferences.getString(getApplicationContext(), "Lng");
 
 
-                    Log.e("SettLocation:",lat+"---"+lng);
-                    float v = Float.parseFloat(lat);
-                    float v1 = Float.parseFloat(lng);
+                    if(!lat.isEmpty())
+                    {
+                        Log.e("SettLocation:",lat+"---"+lng);
+                        float v = Float.parseFloat(lat);
+                        float v1 = Float.parseFloat(lng);
 
-                    float[] distance = new float[1];
-                    Location.distanceBetween(lastLocation.getLatitude(), lastLocation.getLongitude(),
-                            v, v1, distance);
+                        float[] distance = new float[1];
+                        Location.distanceBetween(lastLocation.getLatitude(), lastLocation.getLongitude(),
+                                v, v1, distance);
 
-                    Log.e("NewLogic",distance[0]+"---");
-                    if (distance[0] > 100) {
-                        // New location is outside the geofence radius, change to normal mode
-                        setRingerMode(RINGER_MODE_NORMAL);
-                    } else {
-                        // New location is inside the geofence radius, change to vibrate mode
-                        setRingerMode(RINGER_MODE_VIBRATE);
+                        Log.e("NewLogic",distance[0]+"---");
+                        if (distance[0] > 100) {
+                            // New location is outside the geofence radius, change to normal mode
+                            setRingerMode(RINGER_MODE_NORMAL);
+                        } else {
+                            // New location is inside the geofence radius, change to vibrate mode
+                            setRingerMode(RINGER_MODE_VIBRATE);
+                        }
+
                     }
+
 
                     // ...
                 }

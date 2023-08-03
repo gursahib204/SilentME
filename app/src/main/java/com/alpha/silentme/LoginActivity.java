@@ -3,6 +3,7 @@ package com.alpha.silentme;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
 
     Button btnLogin,btnSignup;
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +35,19 @@ public class LoginActivity extends AppCompatActivity {
         edtPassword =findViewById(R.id.edtPassword);
         btnLogin =findViewById(R.id.btnLogin);
         btnSignup =findViewById(R.id.btnSignupLogin);
+        sharedPreferences=getSharedPreferences("session",MODE_PRIVATE);
+
+        String ss=sharedPreferences.getString("email","0");
+
+        // Toast.makeText(this, ""+ss, Toast.LENGTH_SHORT).show();
+
+        if(ss!="0"){
+
+            Intent i = new Intent(getApplicationContext(), DashboardActivity.class);
+            startActivity(i);
+            finish();
+
+        }
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -62,6 +77,11 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(this, "Login Successfully", Toast.LENGTH_SHORT).show();
+                        SharedPreferences.Editor editor=sharedPreferences.edit();
+                        editor.putString("email",email);
+                        editor.apply();
+
+
                         startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
                         // Perform success actions (e.g., navigate to another activity)
                     } else {

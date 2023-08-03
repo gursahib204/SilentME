@@ -3,19 +3,26 @@ package com.alpha.silentme;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.alpha.silentme.bean.User;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -28,6 +35,12 @@ public class SignupActivity extends AppCompatActivity {
     Button btnSignup,btnLogin;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference usersReference;
+    private ImageView imgProfilePicture;
+    private Uri selectedImageUri; // Store the selected image URI
+
+    private static final int PICK_IMAGE_REQUEST = 1;
+    SharedPreferences sharedPreferences;
+
 
     public SignupActivity() {
     }
@@ -36,8 +49,16 @@ public class SignupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        FirebaseApp.initializeApp(this);
+
 
         initVars();
+
+        if (sharedPreferences.getBoolean("isLoggedIn", false)) {
+            // User is already logged in, navigate to DashboardActivity
+            startActivity(new Intent(SignupActivity.this, DashboardActivity.class));
+            finish(); // Optionally finish the login activity
+        }
     }
 
     private void initVars() {
@@ -48,6 +69,16 @@ public class SignupActivity extends AppCompatActivity {
         edtPassword = findViewById(R.id.edtPassword);
         btnSignup = findViewById(R.id.btnSignup);
         btnLogin = findViewById(R.id.btnLogin);
+        imgProfilePicture = findViewById(R.id.imgProfilePicture);
+        Button btnChoosePicture = findViewById(R.id.btnChoosePicture);
+
+        sharedPreferences = getSharedPreferences("session", MODE_PRIVATE);
+
+        btnChoosePicture.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, PICK_IMAGE_REQUEST);
+        });
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,6 +126,16 @@ public class SignupActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
+            selectedImageUri = data.getData();
+            imgProfilePicture.setImageURI(selectedImageUri);
+        }
+    }
+
     private void signupUser() {
         final String email = edtEmail.getText().toString().trim();
         final String password = edtPassword.getText().toString();
@@ -105,23 +146,45 @@ public class SignupActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         String userId = firebaseAuth.getCurrentUser().getUid();
-                        DatabaseReference currentUserReference = usersReference.child(userId);
 
-                        User user = new User(email, name, college);
-                        currentUserReference.setValue(user);
-                        Toast.makeText(this, "user created successfully", Toast.LENGTH_SHORT).show();
-                        finish();
-                        finishAffinity();
-                        // Perform success actions (e.g., navigate to another activity)
+                        // Upload the selected image to Firebase Storage
+                        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+                        StorageReference profilePictureRef = storageRef.child("profile_pictures/" + userId);
+                        profilePictureRef.putFile(selectedImageUri)
+                                .addOnSuccessListener(taskSnapshot -> {
+                                    profilePictureRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                                        String profilePictureUrl = uri.toString(); // Set the profile picture URL
+
+                                        // Create a new user object with all the data including profilePictureUrl
+                                        User user = new User(name, email, college, profilePictureUrl);
+
+                                        // Save the user object to the Realtime Database
+                                        DatabaseReference currentUserReference = usersReference.child(userId);
+                                        currentUserReference.setValue(user);
+
+                                        Toast.makeText(this, "User created successfully", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(this, DashboardActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    });
+                                })
+                                .addOnFailureListener(exception -> {
+                                    Toast.makeText(this, "Failed to upload profile picture", Toast.LENGTH_SHORT).show();
+                                });
                     } else {
-
-                        Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
-                        // Handle failure (e.g., display an error message)
+                        String errorMessage = task.getException().getMessage();
+                        Toast.makeText(this, "Error creating user: " + errorMessage, Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
+
     private boolean validations() {
         return true;
     }
+
+
+
+
+
 }
