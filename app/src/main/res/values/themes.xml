@@ -13,4 +13,20 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="text_inp_layout">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="colorAccent">#FFFFFF</item>
+        <item name="android:textColorHint">@android:color/white</item>
+        <item name="android:textColorHighlight">@android:color/white</item>
+        <item name="android:textColorLink">@android:color/white</item>
+
+
+        <item name="android:textSize">16sp</item>
+        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
+
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="colorControlActivated">@android:color/white</item>
+    </style>
+
 </resources>

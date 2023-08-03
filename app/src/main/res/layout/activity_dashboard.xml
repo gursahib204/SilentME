@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:background="@drawable/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DashboardActivity">
@@ -36,20 +37,23 @@
         android:textStyle="bold" />
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:text="@string/set_new_location"
+        android:background="@drawable/register_palet_button"
+        android:textColor="@color/black"
         android:textAllCaps="false"
         android:id="@+id/btnSetLocation"
         android:layout_height="wrap_content" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:text="@string/handy_calculator"
         android:textAllCaps="false"
         android:layout_marginTop="20dp"
+        android:background="@drawable/register_palet_button"
         android:id="@+id/btnHandyCalculator"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"

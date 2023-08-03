@@ -1,15 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:background="@drawable/background"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clipToPadding="false"
     android:outlineProvider="bounds"
-    android:paddingTop="54dp"
-    android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    android:orientation="vertical"
+    android:paddingTop="54dp">
 
     <FrameLayout
         android:layout_gravity="center"
@@ -32,8 +29,9 @@
         android:layout_width="wrap_content"
         app:srcCompat="@drawable/ic_add_black_24dp"
         android:scaleType="fitXY"
-        android:layout_height="wrap_content"
-        android:importantForAccessibility="no" />
+        android:layout_height="wrap_content" />
+
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
