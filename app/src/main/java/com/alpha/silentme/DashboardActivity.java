@@ -9,6 +9,8 @@ import android.widget.Button;
 
 public class DashboardActivity extends AppCompatActivity {
 
+
+    //Test
     Button btnSetLocation;
     Button btnHandyCalulator;
     @Override
