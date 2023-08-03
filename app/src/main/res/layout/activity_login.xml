@@ -1,65 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:background="@drawable/background"
     android:layout_width="match_parent"
+    android:clipToPadding="false"
+    android:outlineProvider="bounds"
+    android:paddingTop="54dp"
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical">
 
-    <TextView
+    <FrameLayout
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:id="@+id/student_login_window"
         android:layout_width="wrap_content"
-        android:text="Login Screen"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+        <include layout="@layout/login_student_frame_layout"
+            ></include>
+        <include
+            android:visibility="invisible"
+            layout="@layout/login_student_register_content"></include>
+    </FrameLayout>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:hint="Email"
-        android:layout_margin="10dp"
-        android:id="@+id/edtEmail"
-        android:inputType="textEmailAddress"
-        android:layout_height="wrap_content" />
-    <EditText
-        android:layout_width="match_parent"
-        android:hint="Password"
-        android:layout_margin="10dp"
-        android:id="@+id/edtPassword"
-        android:inputType="textPassword"
-        android:layout_height="wrap_content" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="match_parent"
-        android:layout_margin="20dp"
-        android:text="Login"
-        android:id="@+id/btnLogin"
-        android:textAllCaps="false"
-        android:layout_height="wrap_content" />
-    <TextView
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/login_student_fab_btn"
+        app:layout_anchorGravity="right|top|end"
+        android:layout_marginRight="35dp"
+        app:layout_anchor="@id/student_login_window"
         android:layout_width="wrap_content"
-        android:text="or"
-        android:layout_gravity="center_horizontal"
-        android:layout_height="wrap_content" />
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="match_parent"
-        android:layout_margin="20dp"
-        android:text="Signup"
-        android:id="@+id/btnSignupLogin"
-        android:textAllCaps="false"
-        android:layout_height="wrap_content" />
-        </LinearLayout>
-    </ScrollView>
+        app:srcCompat="@drawable/ic_add_black_24dp"
+        android:scaleType="fitXY"
+        android:layout_height="wrap_content"
+        android:importantForAccessibility="no" />
 
 
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

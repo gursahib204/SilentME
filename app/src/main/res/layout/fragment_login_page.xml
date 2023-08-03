@@ -1,0 +1,37 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clipToPadding="false"
+    android:outlineProvider="bounds"
+    android:orientation="vertical"
+    android:paddingTop="54dp">
+
+    <FrameLayout
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:id="@+id/student_login_window"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <include layout="@layout/login_student_frame_layout"
+            ></include>
+        <include
+            android:visibility="invisible"
+            layout="@layout/login_student_register_content"></include>
+    </FrameLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/login_student_fab_btn"
+        app:layout_anchorGravity="right|top|end"
+        android:layout_marginRight="35dp"
+        app:layout_anchor="@id/student_login_window"
+        android:layout_width="wrap_content"
+        app:srcCompat="@drawable/ic_add_black_24dp"
+        android:scaleType="fitXY"
+        android:layout_height="wrap_content" />
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

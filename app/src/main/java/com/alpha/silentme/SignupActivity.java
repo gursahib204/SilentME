@@ -26,7 +26,6 @@ import com.google.firebase.storage.StorageReference;
 
 public class SignupActivity extends AppCompatActivity {
 
-
     private final String[] spinnerValues = {"Lambton College", "York University", "Humber College"};
 
     String valCollege="";
@@ -52,7 +51,7 @@ public class SignupActivity extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
 
 
-        initVars();
+        initVarsSignup();
 
         if (sharedPreferences.getBoolean("isLoggedIn", false)) {
             // User is already logged in, navigate to DashboardActivity
@@ -61,7 +60,7 @@ public class SignupActivity extends AppCompatActivity {
         }
     }
 
-    private void initVars() {
+    private void initVarsSignup() {
 
         spinner = findViewById(R.id.spinnerColleges);
         edtEmail = findViewById(R.id.edtEmail);
@@ -161,6 +160,7 @@ public class SignupActivity extends AppCompatActivity {
                                         // Save the user object to the Realtime Database
                                         DatabaseReference currentUserReference = usersReference.child(userId);
                                         currentUserReference.setValue(user);
+
 
                                         Toast.makeText(this, "User created successfully", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(this, DashboardActivity.class);
