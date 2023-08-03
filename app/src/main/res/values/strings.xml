@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SilentME</string>
+    <string name="set_new_location">Set New Location</string>
+    <string name="handy_calculator">Handy Calculator</string>
+</resources>

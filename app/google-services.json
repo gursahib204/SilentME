@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "412907473509",
+    "project_id": "silentme-76c1e",
+    "storage_bucket": "silentme-76c1e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:412907473509:android:1f101a9d3dcd98a034548c",
+        "android_client_info": {
+          "package_name": "com.alpha.silentme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "412907473509-7t6kfhaptdspjkm6o2gmt2eku7bnk48h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA58yLQ7KAiskcR1vo27vm8eVfo03mO6oQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "412907473509-7t6kfhaptdspjkm6o2gmt2eku7bnk48h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
