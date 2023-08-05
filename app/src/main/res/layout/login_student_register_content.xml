@@ -42,6 +42,7 @@
                 android:textAppearance="?android:textAppearanceLarge"
                 android:textStyle="bold"
                 android:textColor="#FFFFFF"
+                android:id="@+id/register"
                 android:text="Register"
                 android:gravity="center_vertical"
                 android:layout_width="wrap_content"
@@ -49,9 +50,35 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/layoutmain"
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgProfilePicture1"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="2dp"
+                android:src="@drawable/ic_launcher_background" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_toRightOf="@+id/imgProfilePicture1"
+                android:id="@+id/btnChoosePicture1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/register_palet_button_pic"
+                android:textSize="10dp"
+                android:textColor="@color/colorAccent"
+                android:text="Choose Picture"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"/>
+            </RelativeLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -121,24 +148,11 @@
 
             <androidx.appcompat.widget.AppCompatSpinner
                 android:layout_width="match_parent"
-                android:layout_margin="20dp"
+                android:layout_margin="0dp"
                 android:padding="20dp"
                 android:id="@+id/spinnerColleges"
                 android:layout_height="wrap_content" />
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imgProfilePicture"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_launcher_background" />
 
-            <Button
-                android:id="@+id/btnChoosePicture"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Choose Picture"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp" />
 
             <FrameLayout
                 android:layout_marginRight="16dp"
@@ -152,19 +166,21 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnRegister"
                     android:layout_width="match_parent"
-                    android:background="@drawable/register_palet_button"
+                    android:background="@drawable/register_palet_button_pic"
                     android:textColor="@color/colorAccent"
                     android:textStyle="bold"
                     android:elevation="18dp"
                     android:text="Register"
                     android:layout_height="wrap_content" />
             </FrameLayout>
-            <!--<Button
-                android:id="@+id/student_new_login"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+
+            <!--
+            <Button
                 android:onClick="registerNewAccount"
-                android:text="Register" />-->
+                android:text="Register"
+                android:id="@+id/student_new_login"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"/>-->
 
         </LinearLayout>
 

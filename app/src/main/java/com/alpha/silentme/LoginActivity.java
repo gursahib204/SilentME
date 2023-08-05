@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
         edtPasswordSignup = findViewById(R.id.edtPasswordSignup);
         btnSignup = findViewById(R.id.btnRegister);
         imgProfilePicture = findViewById(R.id.imgProfilePicture);
-        Button btnChoosePicture = findViewById(R.id.btnChoosePicture);
+        Button btnChoosePicture = findViewById(R.id.btnChoosePicture1);
 
         sharedPreferences = getSharedPreferences("session", MODE_PRIVATE);
 
@@ -216,7 +216,7 @@ public class LoginActivity extends AppCompatActivity {
                     circularReveal.start();
 
                     fab.animate().setInterpolator(new DecelerateInterpolator())
-                            .setDuration(600).translationY(150)
+                            .setDuration(600).translationY(50)
                             .translationX(-100)
                             .rotation(135).start();
 
@@ -296,6 +296,18 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean validations() {
-        return true;
+        if (edtEmail.getText().toString().isEmpty())
+        {
+            Toast.makeText(this, "Please enter email", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else if (edtPassword.getText().toString().isEmpty())
+        {
+            Toast.makeText(this, "Please enter Password", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 }
