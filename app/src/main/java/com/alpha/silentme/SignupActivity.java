@@ -180,7 +180,15 @@ public class SignupActivity extends AppCompatActivity {
 
 
     private boolean validations() {
-        return true;
+        if (edtEmail.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Please enter email", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (edtPassword.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Please enter Password", Toast.LENGTH_SHORT).show();
+            return false;
+        } else {
+            return true;
+        }
     }
 
 

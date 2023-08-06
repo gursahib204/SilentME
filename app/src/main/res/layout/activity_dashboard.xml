@@ -24,7 +24,7 @@
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:src="@drawable/ic_launcher_background" />
+        android:src="@drawable/image_user" />
 
     <TextView
         android:id="@+id/txtUserName"

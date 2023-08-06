@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.animation.DecelerateInterpolator;
@@ -103,7 +104,6 @@ public class LoginActivity extends AppCompatActivity {
         );
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         spinner.setAdapter(adapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -123,6 +123,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void signupUser() {
         final String email = edtEmailSignup.getText().toString().trim();
+        Log.d("Debug", "Email: " + email);
         final String password = edtPasswordSignup.getText().toString();
         final String name = edtName.getText().toString();
         final String college = valCollege;

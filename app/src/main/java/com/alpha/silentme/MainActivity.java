@@ -290,8 +290,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         LatLng newLocation = marker.getPosition();
         updateGeofence(newLocation);
         updateCirclePosition(newLocation);
-
         updateMarkerPosition(newLocation);
+
     }
 
 
