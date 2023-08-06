@@ -54,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
     private Uri selectedImageUri; // Store the selected image URI
 
     private static final int PICK_IMAGE_REQUEST = 1;
+    private String profilePictureUrl="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
         edtEmailSignup = findViewById(R.id.edtEmailSignup);
         edtName = findViewById(R.id.edtNameSignup);
         edtPasswordSignup = findViewById(R.id.edtPasswordSignup);
+        edtConfirmPasswordSignup = findViewById(R.id.edtConfirmPassword);
         btnSignup = findViewById(R.id.btnRegister);
         imgProfilePicture = findViewById(R.id.imgProfilePicture);
         Button btnChoosePicture = findViewById(R.id.btnChoosePicture1);
@@ -89,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (validations())
+                if (validationsSignup())
                 {
                     //Firebase Signup User\
                     signupUser();
@@ -121,6 +123,38 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    private boolean validationsSignup() {
+        if (profilePictureUrl.isEmpty())
+        {
+            Toast.makeText(this, "Please Select Image", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else if (edtName.getText().toString().isEmpty())
+        {
+            Toast.makeText(this, "Please enter Name", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else if (edtEmailSignup.getText().toString().isEmpty())
+        {
+            Toast.makeText(this, "Please enter email", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else if (edtPasswordSignup.getText().toString().isEmpty())
+        {
+            Toast.makeText(this, "Please enter Password", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else if (!(edtPasswordSignup.getText().toString().equals(edtConfirmPasswordSignup.getText().toString())))
+        {
+            Toast.makeText(this, "Password mismatch", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else {
+            return true;
+        }
+
+    }
+
     private void signupUser() {
         final String email = edtEmailSignup.getText().toString().trim();
         Log.d("Debug", "Email: " + email);
@@ -139,10 +173,10 @@ public class LoginActivity extends AppCompatActivity {
                         profilePictureRef.putFile(selectedImageUri)
                                 .addOnSuccessListener(taskSnapshot -> {
                                     profilePictureRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                                        String profilePictureUrl = uri.toString(); // Set the profile picture URL
+                                        String profilePicUrl = uri.toString(); // Set the profile picture URL
 
                                         // Create a new user object with all the data including profilePictureUrl
-                                        User user = new User(name, email, college, profilePictureUrl);
+                                        User user = new User(name, email, college, profilePicUrl);
 
                                         // Save the user object to the Realtime Database
                                         DatabaseReference currentUserReference = usersReference.child(userId);
@@ -293,6 +327,7 @@ public class LoginActivity extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
             selectedImageUri = data.getData();
             imgProfilePicture.setImageURI(selectedImageUri);
+            profilePictureUrl = selectedImageUri.toString();
         }
     }
 
