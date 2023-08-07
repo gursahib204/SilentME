@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@android:id/background">
+        <shape android:shape="rectangle">
+            <solid android:color="#90000000" />
+            <corners android:radius="8dp"/>
+            <stroke
+                android:width="2dp"
+                android:color="@color/black" />
+        </shape>
+    </item>
+
+    <!-- Content with the image overlay -->
+    <item android:id="@android:id/content">
+        <bitmap
+            android:src="@drawable/calc"
+            android:gravity="fill"
+            android:alpha="0.7" /> <!-- Add the image you want to display as overlay -->
+    </item>
+
+</layer-list>

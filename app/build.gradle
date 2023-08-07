@@ -53,6 +53,9 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
     //circle image
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    //card
+    implementation "androidx.cardview:cardview:1.0.0"
+
 
 
 

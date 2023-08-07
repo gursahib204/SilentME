@@ -134,11 +134,11 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Please enter Name", Toast.LENGTH_SHORT).show();
             return false;
         }
-        else if (edtEmailSignup.getText().toString().isEmpty())
-        {
-            Toast.makeText(this, "Please enter email", Toast.LENGTH_SHORT).show();
-            return false;
-        }
+       else if (edtEmailSignup.getText().toString().trim().isEmpty()) {
+        Toast.makeText(this, "Please enter email", Toast.LENGTH_SHORT).show();
+        return false;
+       }
+
         else if (edtPasswordSignup.getText().toString().isEmpty())
         {
             Toast.makeText(this, "Please enter Password", Toast.LENGTH_SHORT).show();

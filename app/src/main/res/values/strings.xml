@@ -2,4 +2,9 @@
     <string name="app_name">SilentME</string>
     <string name="set_new_location">Set New Location</string>
     <string name="handy_calculator">Handy Calculator</string>
+    <string name="Virtual_ID">Virtual ID\n</string>
+    <string name="Powered_By_Lambton">Powered By Lambton</string>
+    <string name="Virtual_ID_Information">Virtual ID Information</string>
+    <string name="username">Username\n</string>
+    <string name="Name">Name</string>
 </resources>
