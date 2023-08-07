@@ -7,15 +7,20 @@ import androidx.cardview.widget.CardView;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alpha.silentme.bean.User;
+import com.alpha.silentme.chathead.FloatingViewService;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,12 +34,12 @@ import com.google.firebase.storage.StorageReference;
 
 public class DashboardActivity extends AppCompatActivity {
 
-
     //Test
     CardView btnSetLocation;
     CardView btnHandyCalulator;
     ImageView imgProfilePicture;
     SharedPreferences sharedPreferences;
+    private static final int CODE_DRAW_OVER_OTHER_APP_PERMISSION = 2084;
     private TextView txtUserName;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference usersReference;
@@ -98,10 +103,29 @@ public class DashboardActivity extends AppCompatActivity {
     private void setMethods() {
 
         formContainer.setOnClickListener(view -> {
+            Log.e("Bacl","asds");
             // Call the method to load user info from Firebase and display in dialog
             showUserInfoDialog(stUserName,stEmail,stVirtualID);
         });
 
+        btnHandyCalulator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(DashboardActivity.this)) {
+
+
+                    //If the draw over permission is not available open the settings screen
+                    //to grant the permission.
+                    Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                            Uri.parse("package:" + getPackageName()));
+                    startActivityForResult(intent, CODE_DRAW_OVER_OTHER_APP_PERMISSION);
+                } else {
+                    startService(new Intent(DashboardActivity.this, FloatingViewService.class));
+                    finish();
+                }
+            }
+        });
 
         btnSetLocation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,8 +198,6 @@ public class DashboardActivity extends AppCompatActivity {
         }
     }
 
-
-
     private void initVar() {
         formContainer=findViewById(R.id.formContainer);
         btnSetLocation= findViewById(R.id.btnSetLocation);
@@ -240,6 +262,27 @@ public class DashboardActivity extends AppCompatActivity {
 
         // Show the dialog
         userInfoDialog.show();
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CODE_DRAW_OVER_OTHER_APP_PERMISSION) {
+            //Check if the permission is granted or not.
+            if (resultCode == RESULT_OK)
+            {
+                startService(new Intent(this, FloatingViewService.class));
+                //finish();
+            } else { //Permission is not available
+                Toast.makeText(this,
+                        "Draw over other app permission not available. Closing the application",
+                        Toast.LENGTH_SHORT).show();
+
+                //finish();
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
 

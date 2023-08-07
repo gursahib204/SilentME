@@ -17,6 +17,9 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
 
+    <uses-permission android:name="android.permission.ACTION_MANAGE_OVERLAY_PERMISSION" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
 
     <application
         android:allowBackup="true"
@@ -33,6 +36,12 @@
         <activity
             android:name=".SignupActivity"
             android:exported="false" />
+        <service
+            android:name=".chathead.FloatingViewService"
+            android:enabled="true"
+            android:exported="false" />
+
+
         <activity
             android:name=".DashboardActivity"
             android:exported="false" /> <!-- Define the Splash_Screen activity and set it as the launcher activity -->
