@@ -43,7 +43,7 @@ public class DashboardActivity extends AppCompatActivity {
     private TextView txtVirtualIDForm;
     private CardView formContainer;
     private ImageButton Virtuaclosebutton;
-
+    private String stUserName="",stEmail="",stVirtualID="";
 
 
     @Override
@@ -58,7 +58,7 @@ public class DashboardActivity extends AppCompatActivity {
         sharedlogout();
 
 
-        //loadUserInfo(); // Load user's name from Firebase
+        loadUserInfo(); // Load user's name from Firebase
     }
 
    /* private void loadUserInfo() {
@@ -99,7 +99,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         formContainer.setOnClickListener(view -> {
             // Call the method to load user info from Firebase and display in dialog
-            loadUserInfo();
+            showUserInfoDialog(stUserName,stEmail,stVirtualID);
         });
 
 
@@ -150,6 +150,7 @@ public class DashboardActivity extends AppCompatActivity {
 
     private void loadAndDisplayProfilePicture() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
         if (user != null) {
             String userId = user.getUid();
 
@@ -192,7 +193,7 @@ public class DashboardActivity extends AppCompatActivity {
         Virtuaclosebutton=findViewById(R.id.vclose);
     }
 
-    private void loadUserInfo() {
+ private void loadUserInfo() {
         String userId = firebaseAuth.getCurrentUser().getUid();
 
         usersReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -201,9 +202,11 @@ public class DashboardActivity extends AppCompatActivity {
                 if (dataSnapshot.exists()) {
                     User user = dataSnapshot.getValue(User.class);
                     if (user != null) {
-                        String userName = user.name;
-                        Log.d("UserData", "User's name: " + userName);
-                        txtUserName.setText(userName); // Set user's name in the TextView
+                        stUserName = user.name;
+                        stEmail = user.email;
+                        stVirtualID = userId;
+
+                        txtUserName.setText(stUserName); // Set user's name in the TextView
                     }
                 }
             }
@@ -214,6 +217,7 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private void showUserInfoDialog(String userName, String userEmail, String virtualId) {
         // Create a custom dialog for displaying user information
@@ -241,36 +245,38 @@ public class DashboardActivity extends AppCompatActivity {
 
 
 
-}
-/*private void loadUserInfo() {
-        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-        if (currentUser != null) {
-            String userId = currentUser.getUid();
 
-            usersReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        User user = dataSnapshot.getValue(User.class);
-                        if (user != null) {
-                            String userEmail = user.email; // Adjust this based on your user data
-                            String userName = user.name;
-                            String virtualId = userId; // Use the Firebase UID as virtual ID
 
-                            txtUserNameForm.setText(userName);
-                            txtEmailForm.setText(userEmail);
-                            txtVirtualIDForm.setText("Virtual ID: " + virtualId);
-                        }
+   /*private void loadUserInfo() {
+    FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+    if (currentUser != null) {
+        String userId = currentUser.getUid();
+
+        usersReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    User user = dataSnapshot.getValue(User.class);
+                    if (user != null) {
+                        String userEmail = user.email; // Adjust this based on your user data
+                        String userName = user.name;
+                        String virtualId = userId; // Use the Firebase UID as virtual ID
+
+                        txtUserNameForm.setText(userName);
+                        txtEmailForm.setText(userEmail);
+                        txtVirtualIDForm.setText("Virtual ID: " + virtualId);
                     }
                 }
+            }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    // Handle error if needed
-                }
-            });
-        }
-        }*/
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle error if needed
+            }
+        });
+    }
+}*/
+}
 
 
 

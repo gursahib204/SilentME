@@ -176,7 +176,7 @@ public class LoginActivity extends AppCompatActivity {
                                         String profilePicUrl = uri.toString(); // Set the profile picture URL
 
                                         // Create a new user object with all the data including profilePictureUrl
-                                        User user = new User(name, email, college, profilePicUrl);
+                                        User user = new User(email,name, college, profilePicUrl);
 
                                         // Save the user object to the Realtime Database
                                         DatabaseReference currentUserReference = usersReference.child(userId);
