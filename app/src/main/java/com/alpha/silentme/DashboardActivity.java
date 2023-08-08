@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -46,9 +45,10 @@ public class DashboardActivity extends AppCompatActivity {
     private TextView txtEmailForm;
     private TextView txtUserNameForm;
     private TextView txtVirtualIDForm;
+    private TextView txtCollegeForm;
     private CardView formContainer;
     private ImageButton Virtuaclosebutton;
-    private String stUserName="",stEmail="",stVirtualID="";
+    private String stUserName="",stEmail="",stVirtualID="",college="";
 
 
     @Override
@@ -105,7 +105,7 @@ public class DashboardActivity extends AppCompatActivity {
         formContainer.setOnClickListener(view -> {
             Log.e("Bacl","asds");
             // Call the method to load user info from Firebase and display in dialog
-            showUserInfoDialog(stUserName,stEmail,stVirtualID);
+            showUserInfoDialog(stUserName,stEmail,stVirtualID,college);
         });
 
         btnHandyCalulator.setOnClickListener(new View.OnClickListener() {
@@ -212,6 +212,7 @@ public class DashboardActivity extends AppCompatActivity {
         txtUserNameForm = findViewById(R.id.userName);
         txtEmailForm = findViewById(R.id.txtEmailForm);
         txtVirtualIDForm = findViewById(R.id.txtVirtualIDForm);
+        txtCollegeForm=findViewById(R.id.txtCollegeForm);
         Virtuaclosebutton=findViewById(R.id.vclose);
     }
 
@@ -227,6 +228,7 @@ public class DashboardActivity extends AppCompatActivity {
                         stUserName = user.name;
                         stEmail = user.email;
                         stVirtualID = userId;
+                        college=user.college;
 
                         txtUserName.setText(stUserName); // Set user's name in the TextView
                     }
@@ -241,7 +243,7 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
 
-    private void showUserInfoDialog(String userName, String userEmail, String virtualId) {
+    private void showUserInfoDialog(String userName, String userEmail, String virtualId, String college) {
         // Create a custom dialog for displaying user information
         final Dialog userInfoDialog = new Dialog(DashboardActivity.this);
         userInfoDialog.setContentView(R.layout.dialog_user_info);
@@ -249,11 +251,14 @@ public class DashboardActivity extends AppCompatActivity {
         // Get the TextViews from the dialog layout
         TextView txtUserNameDialog = userInfoDialog.findViewById(R.id.userName);
         TextView txtEmailDialog = userInfoDialog.findViewById(R.id.txtEmailForm);
+        TextView txtCollegeDialog = userInfoDialog.findViewById(R.id.txtCollegeForm);
         TextView txtVirtualIDDialog = userInfoDialog.findViewById(R.id.txtVirtualIDForm);
+
 
         // Set user information in the TextViews
         txtUserNameDialog.setText(userName);
         txtEmailDialog.setText(userEmail);
+        txtCollegeDialog.setText(college);
         txtVirtualIDDialog.setText("Virtual ID: " + virtualId);
 
         Virtuaclosebutton = userInfoDialog.findViewById(R.id.vclose);
@@ -285,64 +290,7 @@ public class DashboardActivity extends AppCompatActivity {
         }
     }
 
-
-
-
-
-
-   /*private void loadUserInfo() {
-    FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-    if (currentUser != null) {
-        String userId = currentUser.getUid();
-
-        usersReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    User user = dataSnapshot.getValue(User.class);
-                    if (user != null) {
-                        String userEmail = user.email; // Adjust this based on your user data
-                        String userName = user.name;
-                        String virtualId = userId; // Use the Firebase UID as virtual ID
-
-                        txtUserNameForm.setText(userName);
-                        txtEmailForm.setText(userEmail);
-                        txtVirtualIDForm.setText("Virtual ID: " + virtualId);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle error if needed
-            }
-        });
-    }
-}*/
 }
-
-
-
-
-   /* private void showUserInfoDialog(String userName, String userEmail, String virtualId) {
-        // Create a custom dialog for displaying user information
-        final Dialog userInfoDialog = new Dialog(DashboardActivity.this);
-        userInfoDialog.setContentView(R.layout.dialog_user_info);
-
-        // Get the TextViews from the dialog layout
-        TextView txtUserNameForm = userInfoDialog.findViewById(R.id.userName);
-        TextView txtEmailForm = userInfoDialog.findViewById(R.id.txtEmailForm);
-        TextView txtVirtualIDForm = userInfoDialog.findViewById(R.id.txtVirtualIDForm);
-
-        // Set user information in the TextViews
-        txtUserNameForm.setText(userName);
-        txtEmailForm.setText(userEmail);
-        txtVirtualIDForm.setText("Virtual ID: " + virtualId);
-
-        // Show the dialog
-        userInfoDialog.show();
-    }
-*/
 
 
 

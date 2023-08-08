@@ -20,10 +20,6 @@ import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 
 
-/**
- * Created by sanju on 4/14/2017.
- */
-
 public class FloatingViewService extends Service {
     private WindowManager mWindowManager;
     private View mFloatingView;

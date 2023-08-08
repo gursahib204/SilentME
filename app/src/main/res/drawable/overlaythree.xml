@@ -13,7 +13,7 @@
     <!-- Content with the image overlay -->
     <item android:id="@android:id/content">
         <bitmap
-            android:src="@drawable/virtual_id"
+            android:src="@drawable/virtualid_img"
             android:gravity="fill"
             android:alpha="0.7" /> <!-- Add the image you want to display as overlay -->
     </item>

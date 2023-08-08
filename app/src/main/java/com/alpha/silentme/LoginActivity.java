@@ -113,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String selectedValue = spinnerValues[position];
                 valCollege = selectedValue;
-                Toast.makeText(LoginActivity.this, "Selected: " + selectedValue, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(LoginActivity.this, "Selected: " + selectedValue, Toast.LENGTH_SHORT).show();
             }
 
             @Override
