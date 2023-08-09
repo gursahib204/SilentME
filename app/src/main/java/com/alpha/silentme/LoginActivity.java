@@ -181,6 +181,9 @@ public class LoginActivity extends AppCompatActivity {
                                         // Save the user object to the Realtime Database
                                         DatabaseReference currentUserReference = usersReference.child(userId);
                                         currentUserReference.setValue(user);
+                                        SharedPreferences.Editor editor=sharedPreferences.edit();
+                                        editor.putString("email",email);
+                                        editor.apply();
 
                                         Toast.makeText(this, "User created successfully", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(this, DashboardActivity.class);
