@@ -155,11 +155,11 @@ public class SignupActivity extends AppCompatActivity {
                                         String profilePictureUrl = uri.toString(); // Set the profile picture URL
 
                                         // Create a new user object with all the data including profilePictureUrl
-                                        User user = new User(name, email, college, profilePictureUrl);
+//                                        User user = new User(name, email, college, profilePictureUrl,);
 
                                         // Save the user object to the Realtime Database
                                         DatabaseReference currentUserReference = usersReference.child(userId);
-                                        currentUserReference.setValue(user);
+//                                        currentUserReference.setValue(user);
 
 
                                         Toast.makeText(this, "User created successfully", Toast.LENGTH_SHORT).show();

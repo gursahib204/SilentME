@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval">
+    <item android:width="50dp" android:height="50dp" android:gravity="center">
+        <shape android:shape="oval">
+            <solid android:color="@color/colorPrimaryDark"></solid>
+        </shape>
+    </item>
+
+    <item android:drawable="@drawable/chat_icon_send_drawable" android:gravity="center"
+        android:width="33dp" android:height="30dp" android:left="17dp" android:right="15dp">
+    </item>
+
+</layer-list>

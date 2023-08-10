@@ -161,6 +161,8 @@ public class LoginActivity extends AppCompatActivity {
         final String password = edtPasswordSignup.getText().toString();
         final String name = edtName.getText().toString();
         final String college = valCollege;
+        long currentTimeMillis = System.currentTimeMillis();
+
 
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
@@ -176,7 +178,7 @@ public class LoginActivity extends AppCompatActivity {
                                         String profilePicUrl = uri.toString(); // Set the profile picture URL
 
                                         // Create a new user object with all the data including profilePictureUrl
-                                        User user = new User(email,name, college, profilePicUrl);
+                                        User user = new User(email,name, college, profilePicUrl,currentTimeMillis);
 
                                         // Save the user object to the Realtime Database
                                         DatabaseReference currentUserReference = usersReference.child(userId);

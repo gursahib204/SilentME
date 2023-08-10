@@ -7,6 +7,7 @@ android {
     namespace 'com.alpha.silentme'
     compileSdk 34
 
+
     defaultConfig {
         applicationId "com.alpha.silentme"
         minSdk 24

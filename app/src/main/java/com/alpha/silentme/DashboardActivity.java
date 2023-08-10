@@ -1,5 +1,10 @@
 package com.alpha.silentme;
 
+import static com.alpha.silentme.consts.Constants.CONST_COLLEGE_NAME;
+import static com.alpha.silentme.consts.Constants.CONST_CURRENT_EMAIL;
+import static com.alpha.silentme.consts.Constants.CONST_NAME;
+import static com.alpha.silentme.consts.Constants.MYUUID;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -20,6 +25,8 @@ import android.widget.Toast;
 
 import com.alpha.silentme.bean.User;
 import com.alpha.silentme.chathead.FloatingViewService;
+import com.alpha.silentme.consts.Constants;
+import com.alpha.silentme.firebase_chat.ChatListActivity;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -35,7 +42,7 @@ public class DashboardActivity extends AppCompatActivity {
 
     //Test
     CardView btnSetLocation;
-    CardView btnHandyCalulator;
+    CardView btnHandyCalulator,formChat;
     ImageView imgProfilePicture;
     SharedPreferences sharedPreferences;
     private static final int CODE_DRAW_OVER_OTHER_APP_PERMISSION = 2084;
@@ -48,7 +55,7 @@ public class DashboardActivity extends AppCompatActivity {
     private TextView txtCollegeForm;
     private CardView formContainer;
     private ImageButton Virtuaclosebutton;
-    private String stUserName="",stEmail="",stVirtualID="",college="";
+    private String stUserName="",stEmail="",stVirtualID="",college="",stId="";
 
 
     @Override
@@ -66,27 +73,6 @@ public class DashboardActivity extends AppCompatActivity {
         loadUserInfo(); // Load user's name from Firebase
     }
 
-   /* private void loadUserInfo() {
-        String userId = firebaseAuth.getCurrentUser().getUid();
-
-        usersReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    User user = dataSnapshot.getValue(User.class);
-                    if (user != null) {
-                        String userName = user.email;
-                        txtUserName.setText(userName); // Set user's name in the TextView
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle error if needed
-            }
-        });
-    }*/
     private void sharedlogout() {
         ImageButton btnLogout = findViewById(R.id.btnLogout);
         btnLogout.setOnClickListener(view -> {
@@ -214,6 +200,15 @@ public class DashboardActivity extends AppCompatActivity {
         txtVirtualIDForm = findViewById(R.id.txtVirtualIDForm);
         txtCollegeForm=findViewById(R.id.txtCollegeForm);
         Virtuaclosebutton=findViewById(R.id.vclose);
+
+        formChat= findViewById(R.id.formChat);
+        formChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(DashboardActivity.this, ChatListActivity.class));
+            }
+        });
+
     }
 
  private void loadUserInfo() {
@@ -227,9 +222,16 @@ public class DashboardActivity extends AppCompatActivity {
                     if (user != null) {
                         stUserName = user.name;
                         stEmail = user.email;
+                        stId = String.valueOf(user.id);
                         stVirtualID = userId;
                         college=user.college;
 
+                        Log.e("collega",college);
+
+                        MySharedPreferences.saveString(DashboardActivity.this, CONST_COLLEGE_NAME,college);
+                        MySharedPreferences.saveString(DashboardActivity.this, CONST_NAME,stUserName);
+                        MySharedPreferences.saveString(DashboardActivity.this, CONST_CURRENT_EMAIL,stEmail);
+                        MySharedPreferences.saveString(DashboardActivity.this, MYUUID,stId);
                         txtUserName.setText(stUserName); // Set user's name in the TextView
                     }
                 }
