@@ -28,6 +28,7 @@ import com.alpha.silentme.chathead.FloatingViewService;
 import com.alpha.silentme.consts.Constants;
 import com.alpha.silentme.firebase_chat.ChatListActivity;
 import com.bumptech.glide.Glide;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -42,7 +43,8 @@ public class DashboardActivity extends AppCompatActivity {
 
     //Test
     CardView btnSetLocation;
-    CardView btnHandyCalulator,formChat;
+    CardView btnHandyCalulator;
+    FloatingActionButton formChat;
     ImageView imgProfilePicture;
     SharedPreferences sharedPreferences;
     private static final int CODE_DRAW_OVER_OTHER_APP_PERMISSION = 2084;

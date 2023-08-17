@@ -10,405 +10,409 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
             android:layout_height="wrap_content">
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp">
-
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/btnLogout"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:text="Logout"
-                    android:layout_toRightOf="@+id/imgProfilePicture"
-                    android:background="@drawable/register_palet_button_pic"
-                    android:src="@drawable/button_logout"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="230dp"
-                    android:layout_marginRight="20dp"
-                    android:textAllCaps="false" />
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imgProfilePicture"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/image_user" />
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
                 <RelativeLayout
-                    android:layout_toRightOf="@+id/imgProfilePicture"
-                    android:id="@+id/textlayout"
-                    android:layout_width="225dp"
-                    android:layout_height="90dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Welcome Back"
-                        android:id="@+id/welcomeback"
-                        android:textColor="#575B66"
-                        android:textSize="13sp"
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/btnLogout"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:text="Logout"
+                        android:layout_toRightOf="@+id/imgProfilePicture"
+                        android:background="@drawable/register_palet_button_pic"
+                        android:src="@drawable/button_logout"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="230dp"
+                        android:layout_marginRight="20dp"
+                        android:textAllCaps="false" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imgProfilePicture"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginTop="25dp"
-                        />
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/image_user" />
+                    <RelativeLayout
+                        android:layout_toRightOf="@+id/imgProfilePicture"
+                        android:id="@+id/textlayout"
+                        android:layout_width="225dp"
+                        android:layout_height="90dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Welcome Back"
+                            android:id="@+id/welcomeback"
+                            android:textColor="#575B66"
+                            android:textSize="13sp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="25dp"
+                            />
 
 
-                    <TextView
-                        android:id="@+id/txtUserName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:layout_below="@+id/welcomeback"
-                        android:textSize="20sp"
-                        android:text=""
-                        android:textAllCaps="true"
-                        android:layout_marginLeft="12dp"
-                        android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/txtUserName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:layout_below="@+id/welcomeback"
+                            android:textSize="20sp"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:layout_marginLeft="12dp"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
 
                 </RelativeLayout>
 
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_gravity="center">
-
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/btnSetLocation"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="173dp"
-                    android:clickable="true"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="30dp"
-                    app:cardCornerRadius="8dp"
-                    >
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="center">
 
-                    <LinearLayout
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/btnSetLocation"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/overlay"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="30dp"
-                            >
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                >
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/set_new_location"
-                                    android:textStyle="bold"
-                                    android:textSize="24sp"
-                                    android:textColor="@color/white"/>
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="SilentMe"
-                                    android:textSize="16sp"
-                                    android:textColor="#DDD9D9"/>
-
-
-
-                            </LinearLayout>
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <ImageView
-                                    android:layout_width="80dp"
-                                    android:layout_height="40dp"
-                                    android:src="@drawable/google_map_icon"
-                                    android:foregroundGravity="right"
-                                    android:layout_alignParentRight="true"
-
-
-                                    />
-                            </RelativeLayout>
-                        </LinearLayout>
-
+                        android:layout_height="173dp"
+                        android:clickable="true"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="30dp"
+                        app:cardCornerRadius="8dp"
+                        >
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginRight="30dp"
-                            android:layout_marginTop="20dp"
-                            android:orientation="horizontal">
+                            android:background="@drawable/overlay"
+                            android:orientation="vertical">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/Powered_By_Lambton"
-                                android:textSize="18dp"
-                                android:layout_marginTop="10dp"
-                                android:textColor="#ffff"/>
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text=""
-                                    android:textSize="20dp"
-                                    android:textColor="#A1FFFFFF"
-                                    android:layout_marginTop="8dp"
-                                    android:layout_marginLeft="8dp"
-                                    android:layout_alignParentRight="true"/>
-
-
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/btnHandyCalculator"
-                    android:layout_width="match_parent"
-                    android:layout_height="173dp"
-                    android:layout_marginRight="30dp"
-                    android:clickable="true"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="30dp"
-                    app:cardCornerRadius="8dp"
-                    >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/overlaytwo"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="30dp"
-                            >
                             <LinearLayout
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="vertical"
+                                android:orientation="horizontal"
+                                android:layout_marginLeft="30dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginRight="30dp"
                                 >
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    >
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/set_new_location"
+                                        android:textStyle="bold"
+                                        android:textSize="24sp"
+                                        android:textColor="@color/white"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="SilentMe"
+                                        android:textSize="16sp"
+                                        android:textColor="#DDD9D9"/>
+
+
+
+                                </LinearLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <ImageView
+                                        android:layout_width="80dp"
+                                        android:layout_height="40dp"
+                                        android:src="@drawable/google_map_icon"
+                                        android:foregroundGravity="right"
+                                        android:layout_alignParentRight="true"
+
+
+                                        />
+                                </RelativeLayout>
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="30dp"
+                                android:layout_marginRight="30dp"
+                                android:layout_marginTop="20dp"
+                                android:orientation="horizontal">
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/handy_calculator"
-                                    android:textSize="24sp"
-                                    android:textStyle="bold"
-                                    android:textColor="@color/white"/>
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="SilentMe"
-                                    android:textSize="16sp"
-                                    android:textColor="#77FFFFFF"/>
+                                    android:text="@string/Powered_By_Lambton"
+                                    android:textSize="18dp"
+                                    android:layout_marginTop="10dp"
+                                    android:textColor="#ffff"/>
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text=""
+                                        android:textSize="20dp"
+                                        android:textColor="#A1FFFFFF"
+                                        android:layout_marginTop="8dp"
+                                        android:layout_marginLeft="8dp"
+                                        android:layout_alignParentRight="true"/>
 
 
+                                </RelativeLayout>
 
                             </LinearLayout>
 
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
 
-                                <ImageView
-                                    android:layout_width="80dp"
-                                    android:layout_height="40dp"
-                                    android:src="@drawable/calcicon"
-                                    android:foregroundGravity="right"
-                                    android:layout_alignParentRight="true"
-
-
-                                    />
-                            </RelativeLayout>
                         </LinearLayout>
+                    </androidx.cardview.widget.CardView>
 
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/btnHandyCalculator"
+                        android:layout_width="match_parent"
+                        android:layout_height="173dp"
+                        android:layout_marginRight="30dp"
+                        android:clickable="true"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="30dp"
+                        app:cardCornerRadius="8dp"
+                        >
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginRight="30dp"
-                            android:layout_marginTop="20dp"
-                            android:orientation="horizontal">
+                            android:background="@drawable/overlaytwo"
+                            android:orientation="vertical">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/Powered_By_Lambton"
-                                android:textSize="18dp"
-                                android:layout_marginTop="3dp"
-                                android:textColor="#ffff"/>
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text=""
-                                    android:textSize="20dp"
-                                    android:textColor="#A1FFFFFF"
-                                    android:layout_marginTop="8dp"
-                                    android:layout_marginLeft="8dp"
-                                    android:layout_alignParentRight="true"/>
-
-
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/formContainer"
-                    android:layout_width="match_parent"
-                    android:layout_height="173dp"
-                    android:layout_marginRight="30dp"
-                    android:clickable="true"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="30dp"
-                    app:cardCornerRadius="8dp"
-                    >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/overlaythree"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="30dp"
-                            >
                             <LinearLayout
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="vertical"
+                                android:orientation="horizontal"
+                                android:layout_marginLeft="30dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginRight="30dp"
                                 >
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    >
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/handy_calculator"
+                                        android:textSize="24sp"
+                                        android:textStyle="bold"
+                                        android:textColor="@color/white"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="SilentMe"
+                                        android:textSize="16sp"
+                                        android:textColor="#77FFFFFF"/>
+
+
+
+                                </LinearLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <ImageView
+                                        android:layout_width="80dp"
+                                        android:layout_height="40dp"
+                                        android:src="@drawable/calcicon"
+                                        android:foregroundGravity="right"
+                                        android:layout_alignParentRight="true"
+
+
+                                        />
+                                </RelativeLayout>
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="30dp"
+                                android:layout_marginRight="30dp"
+                                android:layout_marginTop="20dp"
+                                android:orientation="horizontal">
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/Virtual_ID"
-                                    android:textSize="24sp"
-                                    android:textStyle="bold"
-                                    android:textColor="@color/white"/>
-                                <TextView
-                                    android:layout_marginTop="-30dp"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="SilentMe"
-                                    android:textSize="16sp"
-                                    android:textColor="#77FFFFFF"/>
+                                    android:text="@string/Powered_By_Lambton"
+                                    android:textSize="18dp"
+                                    android:layout_marginTop="3dp"
+                                    android:textColor="#ffff"/>
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text=""
+                                        android:textSize="20dp"
+                                        android:textColor="#A1FFFFFF"
+                                        android:layout_marginTop="8dp"
+                                        android:layout_marginLeft="8dp"
+                                        android:layout_alignParentRight="true"/>
 
 
+                                </RelativeLayout>
 
                             </LinearLayout>
 
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
 
-                                <ImageView
-                                    android:layout_width="80dp"
-                                    android:layout_height="40dp"
-                                    android:src="@drawable/helloidvirtual"
-                                    android:foregroundGravity="right"
-                                    android:layout_alignParentRight="true"
-
-
-                                    />
-                            </RelativeLayout>
                         </LinearLayout>
+                    </androidx.cardview.widget.CardView>
 
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/formContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="173dp"
+                        android:layout_marginRight="30dp"
+                        android:clickable="true"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="30dp"
+                        app:cardCornerRadius="8dp"
+                        >
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginRight="30dp"
-                            android:layout_marginTop="20dp"
-                            android:orientation="horizontal">
+                            android:background="@drawable/overlaythree"
+                            android:orientation="vertical">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/Powered_By_Lambton"
-                                android:textSize="18dp"
-                                android:layout_marginTop="3dp"
-                                android:textColor="#ffff"/>
-                            <RelativeLayout
+                            <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginLeft="30dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginRight="30dp"
+                                >
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    >
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/Virtual_ID"
+                                        android:textSize="24sp"
+                                        android:textStyle="bold"
+                                        android:textColor="@color/white"/>
+                                    <TextView
+                                        android:layout_marginTop="-30dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="SilentMe"
+                                        android:textSize="16sp"
+                                        android:textColor="#77FFFFFF"/>
+
+
+
+                                </LinearLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <ImageView
+                                        android:layout_width="80dp"
+                                        android:layout_height="40dp"
+                                        android:src="@drawable/helloidvirtual"
+                                        android:foregroundGravity="right"
+                                        android:layout_alignParentRight="true"
+
+
+                                        />
+                                </RelativeLayout>
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="30dp"
+                                android:layout_marginRight="30dp"
+                                android:layout_marginTop="20dp"
+                                android:orientation="horizontal">
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text=""
-                                    android:textSize="20dp"
-                                    android:textColor="#A1FFFFFF"
-                                    android:layout_marginTop="8dp"
-                                    android:layout_marginLeft="8dp"
-                                    android:layout_alignParentRight="true"/>
+                                    android:text="@string/Powered_By_Lambton"
+                                    android:textSize="18dp"
+                                    android:layout_marginTop="3dp"
+                                    android:textColor="#ffff"/>
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text=""
+                                        android:textSize="20dp"
+                                        android:textColor="#A1FFFFFF"
+                                        android:layout_marginTop="8dp"
+                                        android:layout_marginLeft="8dp"
+                                        android:layout_alignParentRight="true"/>
 
 
-                            </RelativeLayout>
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
 
                         </LinearLayout>
+                    </androidx.cardview.widget.CardView>
 
-
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/formChat"
-                    android:layout_width="match_parent"
-                    android:layout_height="173dp"
-                    android:layout_marginRight="30dp"
-                    android:clickable="true"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="30dp"
-                    app:cardCornerRadius="8dp"
-                    >
-
-                </androidx.cardview.widget.CardView>
+                </LinearLayout>
 
             </LinearLayout>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/formChat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_chat_white"
+                android:layout_marginRight="30dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:clickable="true"
+                android:layout_marginBottom="20dp"
+                app:cardCornerRadius="8dp" />
 
-        </LinearLayout>
+        </RelativeLayout>
+
     </androidx.core.widget.NestedScrollView>
 
 
